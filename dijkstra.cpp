@@ -14,9 +14,9 @@ int minDist(int d[], bool v[], int n) {
     return idx;
 }
 
-void dijkstra(int g[][10], int n, int src) {
+void dijkstra(int g[][10], int n, int src, int d[]) {
 
-    int d[10];
+   
     bool v[10];
 
     for(int i=0;i<n;i++) {
@@ -36,11 +36,7 @@ void dijkstra(int g[][10], int n, int src) {
         }
     }
 
-    char loc[4][20] = {"Canteen","BlockB","HostelA","Library"};
+    char loc[4][20] = {"Canteen","HostelB","HostelA","HostelC"};
 
-    cout << "\nShortest Distances:\n";
-    for(int i=0;i<n;i++) {
-        cout << "Canteen -> " << loc[i]
-             << " = " << d[i] << " units\n";
-    }
+   
 }

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Eats - Food Delivery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">🍽️</div>
+                <div class="logo-text">
+                    <h1>Campus Eats</h1>
+                    <p>HOT. FAST. ON-CAMPUS.</p>
+                </div>
+            </div>
+            <nav class="nav-tabs">
+                <button class="nav-btn active" onclick="switchTab('order', this)">Order</button>
+<button class="nav-btn" onclick="switchTab('orders', this)">Orders</button>
+<button class="nav-btn" onclick="switchTab('process', this)">Process</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Order Tab -->
+        <div id="order-tab" class="tab-content active">
+            <!-- Trending Banner -->
+            <section class="trending-banner">
+                <div class="trending-label">🔥 Trending on campus</div>
+                <h2>Hungry? We deliver across campus.</h2>
+                <p>Order from the canteen, get it batched smartly, and routed via the shortest path to your hostel.</p>
+                <div class="banner-stats">
+                    <div class="stat">⭐ 4.7 ★ rated</div>
+                    <div class="stat">🕐 under 20 min</div>
+                    <div class="stat">📍 4 locations</div>
+                </div>
+            </section>
+
+            <!-- Menu Section -->
+            <section class="menu-section">
+                <h3 class="menu-title">Today's Menu</h3>
+                <div class="menu-grid" id="menu-grid">
+                    <!-- Menu items will be inserted here -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Orders Tab -->
+        <div id="orders-tab" class="tab-content">
+            <section class="orders-section">
+                <div class="orders-header">
+                    <h2>Your Orders</h2>
+                    <p class="orders-count" id="orders-count">0 order(s) in the system</p>
+                </div>
+                <button class="process-btn" onclick="switchTab('process')">Process Orders →</button>
+                <div class="orders-list" id="orders-list">
+                    <div class="empty-state">
+                        <div class="empty-icon">📦</div>
+                        <p class="empty-text">No orders yet</p>
+                        <a href="#" onclick="switchTab('order', document.querySelector('.nav-btn')) ; return false;" class="browse-link">Browse menu</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Process Tab -->
+        <div id="process-tab" class="tab-content">
+            <section class="process-section">
+                <h2>Process Orders</h2>
+                <div class="process-controls">
+                    <div class="control-group">
+                        <label>Delivery Boys:</label>
+                        <input type="number" id="delivery-boys" min="1" max="20" value="5">
+                    </div>
+                    <div class="control-group">
+                        <label>Capacity (items):</label>
+                        <input type="number" id="capacity" min="5" max="50" value="5">
+                    </div>
+                    <button class="process-start-btn" onclick="processOrders()">Start Processing</button>
+                </div>
+                <div class="process-output" id="process-output"></div>
+            </section>
+        </div>
+
+        <!-- Order Sidebar -->
+        <aside class="order-sidebar">
+            <div class="sidebar-content">
+                <h3>Your Order</h3>
+                <p class="items-count"><span id="items-count">0</span> items</p>
+
+                <!-- Location Selection -->
+                <div class="location-section">
+                    <p class="section-label">Deliver to</p>
+                    <div class="location-buttons">
+                        <button class="location-btn active" onclick="selectLocation(this, 'Canteen')">Canteen</button>
+                        <button class="location-btn" onclick="selectLocation(this, 'HostelA')">HostelA</button>
+                        <button class="location-btn" onclick="selectLocation(this, 'HostelB')">HostelB</button>
+                        <button class="location-btn" onclick="selectLocation(this, 'HostelC')">HostelC</button>
+                    </div>
+                </div>
+
+                <!-- Urgency Slider -->
+                <div class="urgency-section">
+                    <div class="urgency-header">
+                        <p class="section-label">Urgency</p>
+                        <span class="urgency-value"><span id="urgency-num">20</span></span>
+                    </div>
+                    <input type="range" id="urgency-slider" min="0" max="100" value="20" class="slider" oninput="updateUrgency(this.value)">
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-items" id="order-items">
+                    <p class="add-items-hint">Add items to get started.</p>
+                </div>
+
+                <div class="order-summary">
+                    <div class="summary-row">
+                        <span>Total</span>
+                        <span id="total-price">₹0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Priority score</span>
+                        <span id="priority-score">20</span>
+                    </div>
+                </div>
+
+                <!-- Place Order Button -->
+                <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
+                <p class="order-queue" id="order-queue">0 order(s) in queue</p>
+            </div>
+        </aside>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

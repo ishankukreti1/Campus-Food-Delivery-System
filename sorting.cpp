@@ -1,12 +1,12 @@
 #include <cstring>
 #include "sorting.h"
 
-void merge(Order arr[], int l, int m, int r) {
+void merge(Order arr[], int l, int m, int r){
     Order temp[100];
-    int i=l, j=m+1, k=0;
+    int i=l,j=m+1,k=0;
 
-    while(i<=m && j<=r) {
-        if(strcmp(arr[i].location, arr[j].location) < 0)
+    while(i<=m && j<=r){
+        if(arr[i].priority > arr[j].priority)
             temp[k++] = arr[i++];
         else
             temp[k++] = arr[j++];
@@ -15,12 +15,12 @@ void merge(Order arr[], int l, int m, int r) {
     while(i<=m) temp[k++] = arr[i++];
     while(j<=r) temp[k++] = arr[j++];
 
-    for(i=l, k=0; i<=r; i++, k++)
-        arr[i] = temp[k];
+    for(i=l,k=0;i<=r;i++,k++)
+        arr[i]=temp[k];
 }
 
-void mergeSort(Order arr[], int l, int r) {
-    if(l<r) {
+void mergeSort(Order arr[], int l, int r){
+    if(l<r){
         int m=(l+r)/2;
         mergeSort(arr,l,m);
         mergeSort(arr,m+1,r);
